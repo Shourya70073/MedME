@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "673750043623",
+    "project_id": "medme-9eedc",
+    "storage_bucket": "medme-9eedc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673750043623:android:841f03d78cbdfa9f3b8b42",
+        "android_client_info": {
+          "package_name": "com.example.medme"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673750043623-977gs6j752g2hovqbv2vmpf3dtkglbgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiVj5xkkDFVmlqrCCDly3LAw0ew4DEIQ8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673750043623-977gs6j752g2hovqbv2vmpf3dtkglbgu.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "673750043623-6o59gik5qc7f30dtiofed2rdjr3biipo.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.medme"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
