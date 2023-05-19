@@ -31,7 +31,7 @@ class ThirdScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.0, right: 50, top: 20),
               child: Text(
-                'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
+                'Step into the future of healthcare with Med-me, empowering you to take control of your well-being through advanced technology and seamless connectivity.',
                 style: GoogleFonts.roboto(
                     textStyle: const TextStyle(
                   fontSize: 12,

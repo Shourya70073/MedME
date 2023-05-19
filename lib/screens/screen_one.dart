@@ -33,7 +33,7 @@ class FirstScreen extends StatelessWidget {
             Padding(
               padding: EdgeInsets.only(left: 50.0, right: 50, top: 20),
               child: Text(
-                'Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book',
+                'Welcome to Med-me, your all-in-one mobile health companion for easy access to medical information and personalized care.',
                 style: GoogleFonts.roboto(
                     textStyle: const TextStyle(
                   fontSize: 12,
