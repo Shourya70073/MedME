@@ -30,7 +30,10 @@ class _signinState extends State<signin> {
       var finalResult =
           await FirebaseAuth.instance.signInWithCredential(credential);
       Navigator.push(context, MaterialPageRoute(builder: (context) {
-        return homescreen(result: reslut);
+        return homescreen(result: {
+          "from":"google",
+          "result":reslut
+        });
       }));
     } catch (error) {
       print(error);
@@ -53,7 +56,7 @@ class _signinState extends State<signin> {
             child: Container(
               height: 150,
               width: 150,
-              child: Image.asset("images/medme logo-01.png"),
+              child: Image.asset("assets/images/medme logo-01.png"),
             ),
           ),
           Padding(
@@ -61,11 +64,39 @@ class _signinState extends State<signin> {
             child: Center(
               child: Container(
                 height: 150,
-                child: Image.asset("images/health-insurance.png"),
+                child: Image.asset("assets/images/health-insurance.png"),
               ),
             ),
           ),
           SizedBox(
+            height: 20,
+          ),
+          Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 22),
+                child: Container(
+                  child: Column(
+                    children: [
+                      Center(
+                        child: Text(
+                          "\'Health is a state of complete harmony of the body, mind, and spirit.- B.K.S. Iyenga\'",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Center(
+                        child: Text(
+                          "",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+             SizedBox(
             height: 50,
           ),
           GestureDetector(
@@ -82,11 +113,7 @@ class _signinState extends State<signin> {
           SizedBox(
             height: 10,
           ),
-          whitebutt(
-            text: "Continue With Facebook",
-            image: "facebook.png",
-            color: Color(0xfffF7F7F7),
-          ),
+          
           SizedBox(
             height: 10,
           ),
@@ -97,15 +124,12 @@ class _signinState extends State<signin> {
               child: whitebutt(
                 text: "Continue With Google",
                 image: "search.png",
-                color: Color(0xfffDBFB51),
+                color: Colors.white,
               )),
           SizedBox(
             height: 10,
           ),
-          whitebutt(
-              text: "Continue With Email",
-              image: "email.png",
-              color: Color(0xfffF7F7F7))
+          
         ],
       ),
     ));

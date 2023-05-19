@@ -12,7 +12,7 @@ class ThirdScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset('images/sDoc.json', width: 250),
+            Lottie.asset('assets/images/sDoc.json', width: 250),
             const SizedBox(
               height: 15,
             ),

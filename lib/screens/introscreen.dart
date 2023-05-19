@@ -3,6 +3,7 @@ import 'package:medme/screens/loginsignup.dart';
 import 'package:medme/screens/screen_one.dart';
 import 'package:medme/screens/screen_three.dart';
 import 'package:medme/screens/screen_two.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class introscreen extends StatefulWidget {
@@ -13,6 +14,8 @@ class introscreen extends StatefulWidget {
 }
 
 class _introscreenState extends State<introscreen> {
+  SharedPreferences? sp;
+
   bool onlastPage = false;
   PageController _controller = PageController();
   @override
@@ -66,6 +69,7 @@ class _introscreenState extends State<introscreen> {
                   child: onlastPage
                       ? GestureDetector(
                           onTap: () {
+                            
                             Navigator.push(context,
                                 MaterialPageRoute(builder: (context) {
                               return loginsignup();
@@ -74,11 +78,11 @@ class _introscreenState extends State<introscreen> {
                           child: Container(
                             padding: EdgeInsets.all(8),
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black,width: 2),
+                                border:
+                                    Border.all(color: Colors.black, width: 2),
                                 color: const Color(
                                   0xFFd9e252,
                                 ),
-                                
                                 borderRadius: BorderRadius.circular(6)),
                             child: const Text(
                               'Get Started',

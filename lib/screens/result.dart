@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
@@ -26,12 +27,24 @@ class _RecognizePageState extends State<RecognizePage> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    controller.clear();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Recognized Text",style: TextStyle(
-          color: Colors.black,
-        ),),
-        backgroundColor: Color(0xfffDBFB51),),
+        appBar: AppBar(
+          title: const Text(
+            "Recognized Text",
+            style: TextStyle(
+              color: Colors.black,
+            ),
+          ),
+          backgroundColor: Color(0xfffDBFB51),
+        ),
         body: _isBusy == true
             ? const Center(
                 child: CircularProgressIndicator(),
@@ -48,21 +61,56 @@ class _RecognizePageState extends State<RecognizePage> {
   }
 
   void processImage(InputImage image) async {
+    List<String> medname = [
+      "Otrivin Oxy",
+      "Avamys Nasal Spray",
+      "Paracetamol",
+      "Cefpodoxime and Ofloxacin Tablets",
+      
+    ];
     final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 
     setState(() {
       _isBusy = true;
     });
 
-    log(image.filePath!);
     final RecognizedText recognizedText =
         await textRecognizer.processImage(image);
 
     controller.text = recognizedText.text;
+    String data = controller.text;
+    List<String> datay =
+        data.split(" "); // Split the recognized text into individual words
+    String med_name = "";
 
-    ///End busy state
+    for (String i in medname) {
+      for (String j in datay) {
+        double similarity =
+            calculateSimilarity(i.toLowerCase(), j.toLowerCase());
+        if (similarity > 0.4) {
+          // Consider a match if similarity is greater than 30%
+          med_name = i;
+          break; // Exit the loop once a match is found
+        }
+      }
+    }
+    print(datay);
+    controller.text = med_name;
+    print(med_name);
+
+    // End busy state
     setState(() {
       _isBusy = false;
     });
+  }
+
+  double calculateSimilarity(String word1, String word2) {
+    Set<String> set1 = word1.split('').toSet();
+    Set<String> set2 = word2.split('').toSet();
+
+    int intersectionCount = set1.intersection(set2).length;
+    int unionCount = set1.union(set2).length;
+
+    return intersectionCount / unionCount;
   }
 }

@@ -12,7 +12,7 @@ class SecondScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Lottie.asset('images/health1.json', width: 300),
+            Lottie.asset('assets/images/health1.json', width: 300),
             const SizedBox(
               height: 10,
             ),

@@ -29,7 +29,7 @@ class _loginsignupState extends State<loginsignup> {
               child: Container(
                 height: 150,
                 width: 150,
-                child: Image.asset("images/medme logo-01.png"),
+                child: Image.asset("assets/images/medme logo-01.png"),
               ),
             ),
             Padding(
@@ -37,7 +37,7 @@ class _loginsignupState extends State<loginsignup> {
               child: Center(
                 child: Container(
                   height: 200,
-                  child: Image.asset("images/healthbb.png"),
+                  child: Image.asset("assets/images/healthbb.png"),
                 ),
               ),
             ),
@@ -65,39 +65,8 @@ class _loginsignupState extends State<loginsignup> {
                 ),
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 30, left: 30),
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return registerscreen();
-                    }));
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    child: Center(
-                        child: Text(
-                      "Register",
-                      style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),
-                    )),
-                    padding: EdgeInsets.only(
-                        left: 40, right: 40, top: 15, bottom: 15),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.black
-                      ),
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0xfffDBFB51)),
-                  ),
-                ),
-              ),
-            ),
+           
+            
             SizedBox(
               height: 0,
             ),
@@ -120,6 +89,7 @@ class _loginsignupState extends State<loginsignup> {
                         left: 40, right: 40, top: 15, bottom: 15),
                     width: double.infinity,
                     decoration: BoxDecoration(
+                        color: Color(0xfffDBFB51),
                         borderRadius: BorderRadius.circular(20),
                         border: Border.all(width: 2, color: Colors.black)),
                   ),
@@ -127,7 +97,7 @@ class _loginsignupState extends State<loginsignup> {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 0,
             ),
             Container(
               child: Column(

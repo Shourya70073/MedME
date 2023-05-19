@@ -30,7 +30,7 @@ class _registerscreenState extends State<registerscreen> {
                 child: Container(
                   height: 150,
                   width: 150,
-                  child: Image.asset("images/medme logo-01.png"),
+                  child: Image.asset("assets/images/medme logo-01.png"),
                 ),
               ),
              

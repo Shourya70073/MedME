@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:get/get.dart';
+import 'package:medme/screens/addDetails.dart';
 import 'package:medme/widget/whitebutton.dart';
 import 'package:medme/widget/yellowbutton.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
@@ -14,6 +16,7 @@ class mobilenumber extends StatefulWidget {
 }
 
 class _mobilenumberState extends State<mobilenumber> {
+  bool isSending = false;
   var vid;
   otp() async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -21,10 +24,17 @@ class _mobilenumberState extends State<mobilenumber> {
       phoneNumber: '+91 ${c1.text}',
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth.signInWithCredential(credential);
+        
       },
       verificationFailed: (FirebaseAuthException e) {
         if (e.code == 'invalid-phone-number') {
-          print('The provided phone number is not valid.');
+          Get.snackbar(
+            'Error',
+            'Invalid Phone Number',
+            colorText: Colors.black,
+            backgroundColor: Color(0xfffDBFB51),
+            snackPosition: SnackPosition.BOTTOM,
+          );
         }
       },
       codeSent: (String verificationId, int? resendToken) async {
@@ -35,6 +45,11 @@ class _mobilenumberState extends State<mobilenumber> {
       },
       codeAutoRetrievalTimeout: (String verificationId) {},
     );
+    setState(() {
+      isSending = false;
+    });
+    
+    
   }
 
   TextEditingController c1 = TextEditingController();
@@ -51,7 +66,7 @@ class _mobilenumberState extends State<mobilenumber> {
               Container(
                 height: 150,
                 width: 150,
-                child: Image.asset("images/medme logo-01.png"),
+                child: Image.asset("assets/images/medme logo-01.png"),
               ),
               SizedBox(
                 height: 5,
@@ -89,9 +104,16 @@ class _mobilenumberState extends State<mobilenumber> {
                           ),
                           GestureDetector(
                               onTap: () {
+                                setState(() {
+                                  isSending = true;
+                                });
                                 otp();
                               },
-                              child: yellowbutt(text: "Send OTP")),
+                              child: isSending == false
+                                  ? yellowbutt(text: "Send OTP")
+                                  : CircularProgressIndicator(
+                                      color: Colors.black,
+                                    )),
                           SizedBox(
                             height: 30,
                           ),
@@ -99,11 +121,16 @@ class _mobilenumberState extends State<mobilenumber> {
                           SizedBox(
                             height: 5,
                           ),
-                          Text(
-                            "Go Back",
-                            style: TextStyle(
-                                decoration: TextDecoration.underline,
-                                fontWeight: FontWeight.bold),
+                          GestureDetector(
+                            onTap: () {
+                              Get.back();
+                            },
+                            child: Text(
+                              "Go Back",
+                              style: TextStyle(
+                                  decoration: TextDecoration.underline,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           )
                         ],
                       ),
@@ -129,7 +156,7 @@ class _mobilenumberState extends State<mobilenumber> {
                             height: 20,
                           ),
                           Text(
-                            "+91 8948137912",
+                            c1.text,
                             style: TextStyle(
                                 fontSize: 15, fontWeight: FontWeight.bold),
                           ),
@@ -173,6 +200,7 @@ class _mobilenumberState extends State<mobilenumber> {
                                 // Sign the user in (or link) with the credential
                                 await FirebaseAuth.instance
                                     .signInWithCredential(credential);
+                                    Get.to(() => addDetails(phoneNumber: c1.text));
                               },
                               child: yellowbutt(text: "Confirm")),
                           SizedBox(

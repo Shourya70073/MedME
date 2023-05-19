@@ -22,7 +22,7 @@ class whitebutt extends StatelessWidget {
             Container(
               height: 30,
               width: 30,
-              child: Image.asset("images/$image"),
+              child: Image.asset("assets/images/$image"),
             ),
             SizedBox(
               width: 60,

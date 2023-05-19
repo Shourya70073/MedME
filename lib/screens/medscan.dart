@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_mobile_vision_2/flutter_mobile_vision_2.dart';
+import 'package:get/get.dart';
 // ignore: depend_on_referenced_packages
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
@@ -31,7 +32,23 @@ class _medscanState extends State<medscan> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Color(0xfffDBFB51),
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            "Med Scan",
+            style: TextStyle(color: Colors.black),
+          ),
+          backgroundColor: Color(0xfffDBFB51),
+          leading: GestureDetector(
+              onTap: () {
+                Get.back();
+              },
+              child: Icon(
+                Icons.arrow_back,
+                color: Colors.black,
+              )),
+        ),
         body: Column(
           children: [
             Padding(
@@ -44,7 +61,10 @@ class _medscanState extends State<medscan> {
                     SizedBox(
                       height: 40,
                     ),
-                    Center(child: Text("CAMERA AREA")),
+                    Center(child: Text("CAMERA AREA",style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold
+                    ),)),
                     SizedBox(
                       height: 400,
                     ),
@@ -77,8 +97,10 @@ class _medscanState extends State<medscan> {
                               pickImage(source: ImageSource.gallery)
                                   .then((value) => {
                                         if (value != '')
-                                          {imageCropperView(value, context).then((value) {
-                                            if (value != '') {
+                                          {
+                                            imageCropperView(value, context)
+                                                .then((value) {
+                                              if (value != '') {
                                                 Navigator.push(context,
                                                     MaterialPageRoute(
                                                         builder: ((context) {
@@ -86,7 +108,8 @@ class _medscanState extends State<medscan> {
                                                       path: value);
                                                 })));
                                               }
-                                          })}
+                                            })
+                                          }
                                       });
                             },
                             child: Container(
@@ -98,7 +121,6 @@ class _medscanState extends State<medscan> {
                           ),
                           GestureDetector(
                             onTap: () {
-                              
                               pickImage(source: ImageSource.camera)
                                   .then((value) => {
                                         if (value != '')
@@ -140,9 +162,10 @@ class _medscanState extends State<medscan> {
                 width: double.infinity,
                 height: 600,
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    border: Border.all(width: 2, color: Colors.black),
-                    color: Color(0xfffF7F7F7)),
+                  color: Color(0xfffDBFB51),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(width: 2, color: Colors.black),
+                ),
               ),
             ),
             Container()
