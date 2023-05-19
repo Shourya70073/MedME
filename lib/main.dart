@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:medme/medInfo.dart';
 import 'package:medme/screens/addDetails.dart';
 import 'package:medme/screens/brainTumour.dart';
 import 'package:medme/screens/homescreen.dart';
@@ -8,6 +9,7 @@ import 'package:medme/screens/introscreen.dart';
 import 'package:medme/screens/loginsignup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:medme/screens/medscan.dart';
+import 'package:medme/screens/scannedResult.dart';
 import 'package:medme/screens/symptomp.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'firebase_options.dart';

@@ -2,7 +2,10 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:medme/medInfo.dart';
 
 class RecognizePage extends StatefulWidget {
   final String? path;
@@ -24,6 +27,7 @@ class _RecognizePageState extends State<RecognizePage> {
     final InputImage inputImage = InputImage.fromFilePath(widget.path!);
 
     processImage(inputImage);
+    
   }
 
   @override
@@ -38,7 +42,7 @@ class _RecognizePageState extends State<RecognizePage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text(
-            "Recognized Text",
+            "Loading",
             style: TextStyle(
               color: Colors.black,
             ),
@@ -66,7 +70,6 @@ class _RecognizePageState extends State<RecognizePage> {
       "Avamys Nasal Spray",
       "Paracetamol",
       "Cefpodoxime and Ofloxacin Tablets",
-      
     ];
     final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 
@@ -77,10 +80,9 @@ class _RecognizePageState extends State<RecognizePage> {
     final RecognizedText recognizedText =
         await textRecognizer.processImage(image);
 
-    controller.text = recognizedText.text;
+    // controller.text = recognizedText.text;
     String data = controller.text;
-    List<String> datay =
-        data.split(" "); // Split the recognized text into individual words
+    List<String> datay = data.split(" ");
     String med_name = "";
 
     for (String i in medname) {
@@ -88,7 +90,6 @@ class _RecognizePageState extends State<RecognizePage> {
         double similarity =
             calculateSimilarity(i.toLowerCase(), j.toLowerCase());
         if (similarity > 0.4) {
-          // Consider a match if similarity is greater than 30%
           med_name = i;
           break; // Exit the loop once a match is found
         }
@@ -97,7 +98,7 @@ class _RecognizePageState extends State<RecognizePage> {
     print(datay);
     controller.text = med_name;
     print(med_name);
-
+    Get.to(() => MedicineInfo());
     // End busy state
     setState(() {
       _isBusy = false;

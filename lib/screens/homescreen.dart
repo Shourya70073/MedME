@@ -7,6 +7,8 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:medme/screens/brainTumour.dart';
 import 'package:medme/screens/medscan.dart';
+import 'package:medme/screens/reminder.dart';
+import 'package:medme/screens/symptomp.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class homescreen extends StatefulWidget {
@@ -62,8 +64,8 @@ class _homescreenState extends State<homescreen> {
     medscan(),
     brainTumour(),
     medscan(),
-    medscan(),
-    medscan(),
+    SymptomsScreen(),
+    Reminder(),
     medscan(),
   ];
 
@@ -71,7 +73,7 @@ class _homescreenState extends State<homescreen> {
     "Med Scan",
     "Tumour ",
     "Pnuemonia ",
-    "BMI",
+    "Symptopms",
     "Reminder",
     "Doctor"
   ];
@@ -188,7 +190,7 @@ class _homescreenState extends State<homescreen> {
                           itemBuilder: (context, index) {
                             return GestureDetector(
                               onTap: () {
-                                Get.to(() => medscan());
+                                Get.to(() => route[index]);
                               },
                               child: Padding(
                                 padding: const EdgeInsets.all(3.0),
